@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "Social Media API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-9876543210ab",
+    "description": "Collection to test all Social Media API endpoints with JWT auth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"bio\": \"Hello world!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/accounts/register/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "accounts", "register"]
+        }
+      }
+    },
+    {
+      "name": "Login / Get Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/accounts/token/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "accounts", "token"]
+        }
+      }
+    },
+    {
+      "name": "Get Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/accounts/profile/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "accounts", "profile"]
+        }
+      }
+    },
+    {
+      "name": "Follow User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/accounts/follow/2/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "accounts", "follow", "2"]
+        }
+      }
+    },
+    {
+      "name": "Unfollow User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/accounts/unfollow/2/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "accounts", "unfollow", "2"]
+        }
+      }
+    },
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My First Post\",\n  \"content\": \"Hello world content\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/posts/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts"]
+        }
+      }
+    },
+    {
+      "name": "Like Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/posts/1/like/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts", "1", "like"]
+        }
+      }
+    },
+    {
+      "name": "Unlike Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/posts/1/unlike/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts", "1", "unlike"]
+        }
+      }
+    },
+    {
+      "name": "Feed",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/feed/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "feed"]
+        }
+      }
+    },
+    {
+      "name": "Get Notifications",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/notifications/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "notifications"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "access_token", "value": "" }
+  ]
+}

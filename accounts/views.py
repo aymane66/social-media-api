@@ -4,15 +4,16 @@ from .serializers import RegisterSerializer
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.authtoken.views import ObtainAuthToken
 from .models import CustomUser
 
-
+ 
 User = get_user_model()
 
 class RegisterView(generics.CreateAPIView):
-    queryset = CustomUser.objects.all()
+    queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    permission_classes = [permissions.AllowAny]
+
 
 
 class ProfileView(APIView):
